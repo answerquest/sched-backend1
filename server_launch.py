@@ -20,10 +20,7 @@ maxFileSize = 10485760000 # in bytes, used to set maximum file size of uploads. 
 openBrowser = True
 
 inputFolder = os.path.join(root,'input')
-outputFolder = os.path.join(root,'output')
-
 os.makedirs(inputFolder, exist_ok=True)
-os.makedirs(outputFolder, exist_ok=True)
 
 
 ###########################
@@ -60,7 +57,7 @@ class upload(tornado.web.RequestHandler):
         returnD = mainprog.computeThis(input_filename, configD)
 
         cf.logmessage(returnD)
-        
+
         return cf.makeSuccess(returnD)
 
 
