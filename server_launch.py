@@ -54,7 +54,7 @@ class upload(tornado.web.RequestHandler):
 
         cf.logmessage(configD)
 
-        returnD = mainprog.computeThis(input_filename, configD)
+        returnD = mainprog.computeThis(configD)
 
         cf.logmessage(returnD)
 
