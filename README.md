@@ -1,5 +1,16 @@
 ## README
 
+To run the program:
+
+```
+pip install tornado
+
+python server_launch.py
+```
+
+http://localhost:5000 will open in your browser, or open in yourself.
+
+
 Main code will go into "mainprog.py" in computeThis() function.
 
 A dict "configD" will be passed to the function. It will have:
