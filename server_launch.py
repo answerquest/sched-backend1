@@ -48,9 +48,9 @@ class upload(tornado.web.RequestHandler):
         input_filename = cf.uploadaFile(fileHolder)
         configD['attachment'] = input_filename
 
-        configD['maxDelay'] = self.get_body_argument('maxDelay', default=5)
-        configD['maxRunning'] = self.get_body_argument('maxRunning', default=16)
-        configD['travelTime'] = self.get_body_argument('travelTime', default=1)
+        configD['maxDelay'] = float(self.get_body_argument('maxDelay', default=5))
+        configD['maxRunning'] = float(self.get_body_argument('maxRunning', default=16))
+        configD['travelTime'] = float(self.get_body_argument('travelTime', default=1))
 
         cf.logmessage(configD)
 

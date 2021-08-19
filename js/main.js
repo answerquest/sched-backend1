@@ -2,6 +2,14 @@
 
 
 function uploadFile() {
+    
+    // validation 
+    if (!$("#attachment")[0].files[0]) { $("#status").html('Please upload a file'); return;} 
+    if(! $("#maxDelay").val() || $("#maxDelay").val() != 0) { $("#status").html('Invalid maxDelay'); return;} 
+    if(! $("#maxRunning").val() || $("#maxRunning").val() != 0) { $("#status").html('Invalid maxRunning'); return;} 
+    if(! $("#travelTime").val() || $("#travelTime").val() != 0) { $("#status").html('Invalid travelTime'); return;} 
+
+    // attach to form
     var formData = new FormData();
     formData.append("attachment", $("#attachment")[0].files[0]);
     formData.append("maxDelay", $("#maxDelay").val());
@@ -9,6 +17,8 @@ function uploadFile() {
     formData.append("travelTime", $("#travelTime").val());
     $("#status").html("Uploading.. please wait..");
     $('#dump').val('');
+    
+    // make API call
     $.ajax({
         url: `/API/upload`,
         type: "POST",
@@ -18,13 +28,13 @@ function uploadFile() {
         contentType: false, // tell jQuery not to set contentType
         success: function (returndata) {
             console.log("Saved!", returndata);
+            $("#status").html("Done");
             let data = JSON.parse(returndata);
             $('#dump').val(data.logs.join('\n'));
-            $("#status").html("Done");
         },
         error: function (jqXHR, exception) {
-            console.log("error:", jqXHR.responseText);
             $("#status").html("Error");
+            console.log("error:", jqXHR.responseText);
         }
     });
 }
