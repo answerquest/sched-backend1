@@ -5,17 +5,26 @@ function uploadFile() {
     
     // validation 
     if (!$("#attachment")[0].files[0]) { $("#status").html('Please upload a file'); return;} 
-    if(! $("#maxDelay").val() || $("#maxDelay").val() != 0) { $("#status").html('Invalid maxDelay'); return;} 
-    if(! $("#maxRunning").val() || $("#maxRunning").val() != 0) { $("#status").html('Invalid maxRunning'); return;} 
-    if(! $("#travelTime").val() || $("#travelTime").val() != 0) { $("#status").html('Invalid travelTime'); return;} 
+    if(! parseFloat($("#maxDelay").val()) && parseFloat($("#maxDelay").val()) != 0) { 
+        $("#status").html('Invalid maxDelay'); return;
+    } 
+    if(! parseFloat($("#maxRunning").val()) && parseFloat($("#maxRunning").val()) != 0) { 
+        $("#status").html('Invalid maxRunning'); 
+        return;
+    } 
+    if(! parseFloat($("#travelTime").val()) && parseFloat($("#travelTime").val()) != 0) { 
+        $("#status").html('Invalid travelTime'); 
+        return;
+    } 
 
     // attach to form
     var formData = new FormData();
     formData.append("attachment", $("#attachment")[0].files[0]);
-    formData.append("maxDelay", $("#maxDelay").val());
-    formData.append("maxRunning", $("#maxRunning").val());
-    formData.append("travelTime", $("#travelTime").val());
-    $("#status").html("Uploading.. please wait..");
+    formData.append("maxDelay", parseFloat($("#maxDelay").val()) );
+    formData.append("maxRunning", parseFloat($("#maxRunning").val()) );
+    formData.append("travelTime", parseFloat($("#travelTime").val()) );
+    $("#status").html(`<div class="spinner-border text-primary" role="status"></div>
+        Uploading and Processing.. please wait..`);
     $('#dump').val('');
     
     // make API call

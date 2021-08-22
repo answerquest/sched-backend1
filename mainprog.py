@@ -1,5 +1,5 @@
 # mainprog.py
-import os
+import os, time
 
 root = os.path.dirname(__file__) # needed for tornado
 inputFolder = os.path.join(root,'input')
@@ -15,6 +15,8 @@ def computeThis(configD):
 	print("Do your computation here")
 
 	full_filename = os.path.join(inputFolder,configD['attachment'])
+
+	time.sleep(5) # pause 5 mins, remove this in final
 
 	logs = []
 	logs.append("One log line")
