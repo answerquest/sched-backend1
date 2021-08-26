@@ -61,12 +61,20 @@ class upload(tornado.web.RequestHandler):
         return cf.makeSuccess(returnD)
 
 
+class test(tornado.web.RequestHandler):
+    def get(self):
+        print("yes got the test api call")
+        self.set_status(200)
+        self.write("Ok I see you")
+
+
 ###################
 # List API calls and the class they will be directed to, here
 def make_app():
     return tornado.web.Application([
         #(r"/API/data", APIHandler),
         (r"/API/upload", upload),
+        (r"/API/test", test),
         (r"/(.*)", tornado.web.StaticFileHandler, {"path": root, "default_filename": "index.html"})
     ])
 
