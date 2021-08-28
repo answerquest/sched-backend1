@@ -29,6 +29,7 @@ def computeThis(configD):
     logs.append(f"Zipping outputs.. root_dir: {root_dir1}")
     o1Filename = 'Intermediate_analysis_output'
     o2Filename = 'Results_output'
+    # from https://docs.python.org/3/library/shutil.html#shutil.make_archive
     shutil.make_archive(base_name=os.path.join(root,o1Filename), 
         format='zip', root_dir=root_dir1, base_dir='Intermediate_analysis' )
     shutil.make_archive(base_name=os.path.join(root,o2Filename), 
