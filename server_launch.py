@@ -1,3 +1,4 @@
+openBrowser = True
 # server_launch.py
 
 import os, sys, json, urllib, time, datetime, signal
@@ -16,8 +17,9 @@ print('Loaded dependencies, starting program.')
 portnum = 5000
 maxThreads = 8
 root = os.path.dirname(__file__) # needed for tornado
+print("root:",root)
+
 maxFileSize = 10485760000 # in bytes, used to set maximum file size of uploads. Default: 100MB = 104857600 bytes
-openBrowser = True
 
 inputFolder = os.path.join(root,'input')
 os.makedirs(inputFolder, exist_ok=True)
@@ -63,7 +65,7 @@ class upload(tornado.web.RequestHandler):
 
 class test(tornado.web.RequestHandler):
     def get(self):
-        print("yes got the test api call")
+        print("yes the program is working")
         self.set_status(200)
         self.write("Ok I see you")
 

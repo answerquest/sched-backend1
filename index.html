@@ -34,6 +34,7 @@
 <p><button onclick="uploadFile()" class="btn btn-lg btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;
 
 <span id="status"></span></p>
+<p id="download"></p>
 
 <textarea id="dump"></textarea>
 </div>
@@ -64,6 +65,7 @@ function uploadFile() {
     $("#status").html(`<div class="spinner-border text-primary" role="status"></div>
         Uploading and Processing.. please wait..`);
     $('#dump').val('');
+    $('#download').html('');
     
     // make API call
     $.ajax({
@@ -78,6 +80,7 @@ function uploadFile() {
             $("#status").html("Done");
             let data = JSON.parse(returndata);
             $('#dump').val(data.logs.join('\n'));
+            $('#download').html(`Download outputs: <a href="${data.output1}">${data.output1}</a> | <a href="${data.output2}">${data.output2}</a>`)
         },
         error: function (jqXHR, exception) {
             $("#status").html("Error");

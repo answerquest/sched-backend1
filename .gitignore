@@ -1,5 +1,6 @@
 __pycache__/
 logs/
 input/
-output1/
-output2/
+Intermediate_analysis/
+Results/
+*.zip
