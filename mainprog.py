@@ -25,6 +25,7 @@ def computeThis(configD):
 
     # zipping outputs
     root_dir1 = root if len(root) else os.curdir
+    cf.logmessage("root_dir:", root_dir1)
     logs.append(f"Zipping outputs.. root_dir: {root_dir1}")
     o1Filename = 'Intermediate_analysis_output'
     o2Filename = 'Results_output'
